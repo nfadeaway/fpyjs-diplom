@@ -6,21 +6,40 @@
  * */
 class VK {
 
-  static ACCESS_TOKEN = '958eb5d439726565e9333aa30e50e0f937ee432e927f0dbd541c541887d919a7c56f95c04217915c32008';
+  static ACCESS_TOKEN = '';
   static lastCallback;
 
   /**
    * Получает изображения
-   * */
-  static get(id = '', callback){
-
+   */
+  static get(id = '', callback) {
+    const script = document.createElement('SCRIPT');
+    script.src = `https://api.vk.com/method/photos.get?owner_id=${id}&album_id=profile&photo_sizes=1&access_token=${this.ACCESS_TOKEN}&callback=callback&v=5.131`;
+    script.id = 'photos_get';
+    document.body.appendChild(script);
   }
 
   /**
    * Передаётся в запрос VK API для обработки ответа.
    * Является обработчиком ответа от сервера.
    */
-  static processData(result){
-
+  static processData(result) {
+    try {
+      document.querySelector('#photos_get').remove();
+    } catch(err) {
+      alert(`Ошибка ${err.name}: ${err.message}\n${err.stack}`);
+      return false;
+    }
+    const objPhotos = JSON.parse(result);
+    if (objPhotos['error']) {
+      alert(`Ошибка: ${objPhotos['error']['error_msg']}`);
+      return false;
+    }
+    let biggestPhotoArr = [];
+    for (let i = 0; i < objPhotos['response']['count']; i++) {
+      let photoSizes = objPhotos['response']['items'][i]['sizes'];
+      biggestPhotoArr.push(photoSizes.sort((a, b) => b['height'] - a['height'])[0]['url']);
+    }
+    return biggestPhotoArr;
   }
 }
