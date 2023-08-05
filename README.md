@@ -1,4 +1,7 @@
 # О проекте
+![Static Badge](https://img.shields.io/badge/javascript%20-%20black?logo=javascript)
+![Static Badge](https://img.shields.io/badge/html5%20-%20%23000000?logo=HTML5)
+![Static Badge](https://img.shields.io/badge/css3%20-%20%23000000?logo=CSS3&logoColor=%231572B6)
 
 [Курсовая работа "Облачное хранилище WebCloud (UI)" курса "JavaScript: основы работы в браузере"](https://github.com/netology-code/fpyjs-diplom)
 
