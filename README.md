@@ -18,3 +18,6 @@
 ```
 static ACCESS_TOKEN = '';
 ```
+
+## Запись работы программы
+![Работа программы](/gif/js_webcloud.gif)
